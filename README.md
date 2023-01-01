@@ -34,7 +34,7 @@ import TaakSDK from 'taak-sdk'
 
 const TaakSdkClient = new TaakSDK({ apiKey: '%apiKey%' })
 
-DevToClient.getWebPushesByUserId('user-id-001').then((data) => {
+TaakSdkClient.getWebPushesByUserId('user-id-001').then((data) => {
     console.log(data)
 })
 
