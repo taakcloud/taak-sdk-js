@@ -10,8 +10,8 @@ A tiny, universal client for the Taakcloud.com API written in Typescript.
 
 <div>
 <a href="https://www.npmjs.com/package/taak-sdk"><img src="https://img.shields.io/npm/v/taak-sdk" alt="taak-sdk"></a>
-<a href="https://unpkg.com/taak-sdk"><img src="https://img.badgesize.io/https://unpkg.com/taak-sdk@1.0.0/dist/index.js?compression=gzip" alt="gzip size"></a>
-<a href="https://unpkg.com/taak-sdk"><img src="https://img.badgesize.io/https://unpkg.com/taak-sdk@1.0.0/dist/index.js?compression=brotli" alt="brotli size"></a>
+<a href="https://unpkg.com/taak-sdk"><img src="https://img.badgesize.io/https://unpkg.com/taak-sdk@1.1.0/dist/index.js?compression=gzip" alt="gzip size"></a>
+<a href="https://unpkg.com/taak-sdk"><img src="https://img.badgesize.io/https://unpkg.com/taak-sdk@1.1.0/dist/index.js?compression=brotli" alt="brotli size"></a>
 </div>
 
 ## ✨ Features:
