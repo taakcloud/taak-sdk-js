@@ -36,9 +36,15 @@
     "clean": "rm -rf dist",
     "dev": "microbundle watch --tsconfig tsconfig.json",
     "prepack": "npm run build",
+    "pretty-quick": "pretty-quick",
     "semantic-release": "semantic-release",
     "sort-package": "sort-package-json package.json",
     "test": "jest"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "pretty-quick --staged"
+    }
   },
   "release": {
     "branches": [
@@ -51,9 +57,12 @@
   },
   "devDependencies": {
     "@types/jest": "^25.2.1",
+    "husky": "^8.0.0",
     "jest": "^29.3.1",
     "microbundle": "0.13.0",
     "nock": "^13.2.9",
+    "prettier": "^2.2.1",
+    "pretty-quick": "^3.1.0",
     "semantic-release": "^19.0.5",
     "sort-package-json": "^1.57.0",
     "ts-jest": "^29.0.3",

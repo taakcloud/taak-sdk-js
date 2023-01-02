@@ -1,4 +1,3 @@
-import { Response as NodeResponse } from 'node-fetch'
 import { AppBase } from "../app-base"
 import { TaakResponse } from '../taak-response'
 import { WebPushDTO, WebPushSendCommand, WebPushSubscribeCommand } from "./types"
@@ -11,22 +10,11 @@ export class WebPush extends AppBase {
     return this.request<WebPushDTO>(resourcePath + '/subscribe', {
       method: 'POST',
       body: JSON.stringify(command),
-    }).then((res: NodeResponse) => {
-      return { status: res.status, data: res.json() }
-    }).catch((error) => {
-      console.log('TAAK:subscribeWebPush:', error)
-      return { status: 500, error }
     })
   }
 
   getWebPushesByUserId(userId: string): Promise<TaakResponse> {
     return this.request<WebPushDTO[]>(`${resourcePath}/${userId}`)
-      .then((res: NodeResponse) => {
-        return { status: res.status, data: res.json() }
-      }).catch((error) => {
-        console.log('TAAK:getWebPushesByUserId:', error)
-        return { status: 500, error }
-      })
   }
 
   sendWebPush(command: WebPushSendCommand): Promise<TaakResponse> {
@@ -34,12 +22,6 @@ export class WebPush extends AppBase {
       method: 'POST',
       body: JSON.stringify(command),
     })
-      .then((res: NodeResponse) => {
-        return { status: res.status, data: res.json() }
-      }).catch((error) => {
-        console.log('TAAK:sendWebPush:', error)
-        return { status: 500, error }
-      })
   }
 
 }
