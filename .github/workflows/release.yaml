@@ -1,7 +1,7 @@
 name: Release
 on:
   workflow_run:
-    workflows: ['Snyk Security Check', 'Tests']
+    workflows: ['Tests']
     branches: [main]
     types:
       - completed
@@ -14,6 +14,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
         with:
+          persist-credentials: false
           fetch-depth: 0
       - name: Setup Node.js
         uses: actions/setup-node@v2
@@ -25,6 +26,6 @@ jobs:
         run: npm run build
       - name: Release
         env:
-          GH_TOKEN: ${{ secrets.GHP_TOKEN }}
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: npx semantic-release
