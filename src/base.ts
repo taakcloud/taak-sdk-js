@@ -1,8 +1,9 @@
+import { Response as NodeResponse } from 'node-fetch'
 import fetch from 'isomorphic-unfetch'
 
 export type Config = {
   apiKey: string
-  basePath: string
+  basePath?: string
 }
 
 export abstract class Base {
@@ -14,7 +15,7 @@ export abstract class Base {
     this.basePath = config.basePath
   }
 
-  protected request<T> (endpoint: string, options?: RequestInit): Promise<T> {
+  protected request<T>(endpoint: string, options?: RequestInit): Promise<NodeResponse> {
     const url = this.basePath + endpoint
     const headers = {
       'X-TAAK-API-KEY': this.apiKey,
@@ -24,12 +25,7 @@ export abstract class Base {
       ...options,
       headers,
     }
-    return fetch(url, config).then(r => {
-      if (r.ok) {
-        return r.json()
-      }
-      throw new Error(r.statusText)
-    })
+    return fetch(url, config)
   }
 
 }
