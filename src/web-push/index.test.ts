@@ -52,4 +52,15 @@ describe('WebPush resource', () => {
     expect(TaakSDK.DEFAULT_WEB_PUSH_SERVER_PUBLIC_KEY).toBe('BBE1u0MfUE82cyodMmjmJlC1cynxKmvDSE0oMdcJN73gAcGp4pdS6ClF9j40mv7NaqOXexbZ-GdjHyGUJ1E4g9s')
   })
 
+  test('deleteWebPush returns status code 204 if success', async () => {
+    const publicId = 'dfd0b610-c340-4452-a04d-48912448bbb4'
+    const scope = nock('https://app-api.taakcloud.com')
+      .delete('/v1/web-push/' + publicId)
+      .reply(204, {})
+
+    const TaakSdkClient = new TaakSDK({ apiKey: 'XYZ' })
+    await TaakSdkClient.deleteWebPush(publicId)
+    scope.done()
+  })
+
 })

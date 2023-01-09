@@ -24,4 +24,10 @@ export class WebPush extends AppBase {
     })
   }
 
+  deleteWebPush(publicId: string): Promise<TaakResponse> {
+    return this.request<void>(`${resourcePath}/${publicId}`, {
+      method: 'DELETE',
+    })
+  }
+
 }
