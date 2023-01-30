@@ -3,3 +3,5 @@ dist
 build
 *.log
 .vscode
+.DS_Store
+.local-pack

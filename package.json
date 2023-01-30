@@ -52,6 +52,7 @@
     ]
   },
   "dependencies": {
+    "buffer": "^6.0.3",
     "isomorphic-unfetch": "3.1.0",
     "querystringify": "2.2.0"
   },
