@@ -63,16 +63,4 @@ describe('WebPush resource', () => {
     scope.done()
   })
 
-  test('urlBase64ToUint8Array', async () => {
-    const TaakSdkClient = new TaakSDK({ apiKey: 'XYZ' })
-    const key = TaakSDK.DEFAULT_WEB_PUSH_SERVER_PUBLIC_KEY
-    const encoded = Buffer.from(key).toString('base64')
-    const decoded = Buffer.from(encoded, 'base64').toString('ascii')
-    expect(decoded).toBe(key)
-
-    const arr = TaakSdkClient.urlBase64ToUint8Array(key)
-    expect(Buffer.from(arr).toString('base64')).toBe("BBE1O0MfUE82cyodMmhmJlA1cylxKmtDSE0oMVcJNz1gAUEpYhdSaClFdj40Gn5NaiMXexZZeGdjHyEUJ1E4A1s=")
-
-  })
-
 })

@@ -1,4 +1,3 @@
-import { Buffer } from 'buffer'
 import { AppBase } from "../app-base"
 import { TaakResponse } from '../taak-response'
 import { WebPushDTO, WebPushSendCommand, WebPushSubscribeCommand } from "./types"
@@ -109,7 +108,7 @@ export class WebPush extends AppBase {
     var padding = '='.repeat((4 - (base64String.length % 4)) % 4)
     var base64 = (base64String + padding).replace(/\-/g, '+').replace(/_/g, '/')
 
-    var rawData = Buffer.from(base64, 'base64').toString('ascii')
+    var rawData = window.atob(base64)
     var outputArray = new Uint8Array(rawData.length)
 
     for (var i = 0; i < rawData.length; ++i) {
