@@ -39,3 +39,12 @@ TaakSdkClient.getWebPushesByUserId('user-id-001').then((data) => {
 })
 
 ```
+
+## Documentation
+
+[https://docs.taakcloud.com](https://docs.taakcloud.com)
+
+### Web Push Notification doc
+
+[https://docs.taakcloud.com/products/web-push-notification/](https://docs.taakcloud.com/products/web-push-notification/)
+
