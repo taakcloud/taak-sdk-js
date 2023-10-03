@@ -1,5 +1,5 @@
 export type ProductDTO = {
-  gtin: string
+  gtin: number
   name: string
   nameFa: string
   price: number
