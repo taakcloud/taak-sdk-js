@@ -20,7 +20,7 @@ describe('mFactor resource', () => {
         },
       ],
     }
-    const scope = nock('https://mfactor.ir')
+    const scope = nock('https://mfactor.taakcloud.com')
       .post('/api/v1/factor/create', cmd)
       .reply(200, {})
 

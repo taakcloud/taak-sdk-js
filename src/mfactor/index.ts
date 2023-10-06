@@ -8,7 +8,7 @@ import {
 } from './types'
 
 export class mFactor extends AppBase {
-  public static readonly basePath = 'https://mfactor.ir'
+  public static readonly basePath = 'https://mfactor.taakcloud.com'
   createFactor(command: FactorCreateCommand): Promise<TaakResponse> {
     return this.request<FactorDTO>(
       '/api/v1/factor/create',
