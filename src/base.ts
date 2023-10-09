@@ -6,17 +6,20 @@ export type Config = {
   apiKey: string
   basePath?: string
   debug?: boolean
+  local?: boolean // For development use only, default is false
 }
 
 export abstract class Base {
   private apiKey: string
   private basePath: string
   private debug: boolean
+  private local: boolean
 
   constructor(config: Config) {
     this.apiKey = config.apiKey
     this.basePath = config.basePath
     this.debug = config.debug || false
+    this.local = config.local || false
   }
 
   protected request<T>(
@@ -24,7 +27,13 @@ export abstract class Base {
     options?: RequestInit,
     basePath?: string
   ): Promise<TaakResponse> {
-    const url = (basePath ? basePath : this.basePath) + endpoint
+    let actualBasePath = null
+    if (this.local) {
+      actualBasePath = this.lookupLocalPath(basePath ? basePath : this.basePath)
+    } else {
+      actualBasePath = basePath ? basePath : this.basePath
+    }
+    const url = actualBasePath + endpoint
     if (this.debug) console.log('URL:', url)
     const headers = {
       'X-TAAK-API-KEY': this.apiKey,
@@ -48,4 +57,18 @@ export abstract class Base {
         return { status: 0, error: error?.message }
       })
   }
+
+  private lookupLocalPath = (remotePath: string) => {
+    switch(remotePath) {
+      case 'https://app-api.taakcloud.com':
+        return 'http://localhost:8080'
+      case 'https://gtin.taakcloud.com':
+        return 'http://localhost:8091'
+      case 'https://mfactor.taakcloud.com':
+        return 'http://localhost:8092'
+      default:
+        throw new Error(`No local path found for ${remotePath}`)
+    }
+  }
+
 }
