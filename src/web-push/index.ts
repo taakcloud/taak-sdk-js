@@ -9,25 +9,25 @@ export class WebPush extends AppBase {
   static readonly DEFAULT_WEB_PUSH_SERVER_PUBLIC_KEY = 'BBE1u0MfUE82cyodMmjmJlC1cynxKmvDSE0oMdcJN73gAcGp4pdS6ClF9j40mv7NaqOXexbZ-GdjHyGUJ1E4g9s'
 
   subscribeWebPush(command: WebPushSubscribeCommand): Promise<TaakResponse> {
-    return this.request<WebPushDTO>(resourcePath + '/subscribe', {
+    return this.appRequest<WebPushDTO>(resourcePath + '/subscribe', {
       method: 'POST',
       body: JSON.stringify(command),
     })
   }
 
   getWebPushesByUserId(userId: string): Promise<TaakResponse> {
-    return this.request<WebPushDTO[]>(`${resourcePath}/${userId}`)
+    return this.appRequest<WebPushDTO[]>(`${resourcePath}/${userId}`)
   }
 
   sendWebPush(command: WebPushSendCommand): Promise<TaakResponse> {
-    return this.request<void>(resourcePath + '/send', {
+    return this.appRequest<void>(resourcePath + '/send', {
       method: 'POST',
       body: JSON.stringify(command),
     })
   }
 
   deleteWebPush(publicId: string): Promise<TaakResponse> {
-    return this.request<void>(`${resourcePath}/${publicId}`, {
+    return this.appRequest<void>(`${resourcePath}/${publicId}`, {
       method: 'DELETE',
     })
   }

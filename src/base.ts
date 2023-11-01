@@ -4,6 +4,9 @@ import { TaakResponse } from './taak-response'
 
 export type Config = {
   apiKey: string
+  appHost?: string
+  gtinHost?: string
+  mfactorHost?: string
   basePath?: string
   debug?: boolean
   local?: boolean // For development use only, default is false
@@ -11,12 +14,18 @@ export type Config = {
 
 export abstract class Base {
   private apiKey: string
+  private appHost = 'https://app-api.taakcloud.com'
+  private gtinHost = 'https://gtin.taakcloud.com'
+  private mfactorHost = 'https://mfactor.taakcloud.com'
   private basePath: string
   private debug: boolean
   private local: boolean
 
   constructor(config: Config) {
     this.apiKey = config.apiKey
+    this.appHost = config.appHost || this.appHost
+    this.gtinHost = config.gtinHost || this.gtinHost
+    this.mfactorHost = config.mfactorHost || this.mfactorHost
     this.basePath = config.basePath
     this.debug = config.debug || false
     this.local = config.local || false
@@ -56,6 +65,27 @@ export abstract class Base {
       .catch((error: any) => {
         return { status: 0, error: error?.message }
       })
+  }
+
+  protected appRequest<T>(
+    endpoint: string,
+    options?: RequestInit,
+  ): Promise<TaakResponse> {
+    return this.request(endpoint, options, this.appHost)
+  }
+
+  protected gtinRequest<T>(
+    endpoint: string,
+    options?: RequestInit,
+  ): Promise<TaakResponse> {
+    return this.request(endpoint, options, this.gtinHost)
+  }
+
+  protected mfactorRequest<T>(
+    endpoint: string,
+    options?: RequestInit,
+  ): Promise<TaakResponse> {
+    return this.request(endpoint, options, this.mfactorHost)
   }
 
   private lookupLocalPath = (remotePath: string) => {

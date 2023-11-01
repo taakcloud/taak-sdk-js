@@ -25,7 +25,7 @@ describe('mFactor resource', () => {
       .reply(200, {})
 
     // Make the request
-    const TaakSdkClient = new TaakSDK({ apiKey: 'XYZ', debug: true, local: false })
+    const TaakSdkClient = new TaakSDK({ apiKey: 'XYZ' })
     await TaakSdkClient.createFactor(cmd)
 
     // Assert that the expected request was made.

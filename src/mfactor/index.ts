@@ -8,34 +8,30 @@ import {
 } from './types'
 
 export class mFactor extends AppBase {
-  public static readonly basePath = 'https://mfactor.taakcloud.com'
   createFactor(command: FactorCreateCommand): Promise<TaakResponse> {
-    return this.request<FactorDTO>(
+    return this.mfactorRequest<FactorDTO>(
       '/api/v1/factor/create',
       {
         method: 'POST',
         body: JSON.stringify(command),
       },
-      mFactor.basePath
     )
   }
 
   getFactor(publicId: string): Promise<TaakResponse> {
-    return this.request<FactorDTO>(
+    return this.mfactorRequest<FactorDTO>(
       `/api/v1/factor/${publicId}`,
       {},
-      mFactor.basePath
     )
   }
 
   ipgObtainToken(command: ObtainTokenCommand): Promise<TaakResponse> {
-    return this.request<TokenDTO>(
+    return this.mfactorRequest<TokenDTO>(
       '/api/v1/ipg/token',
       {
         method: 'POST',
         body: JSON.stringify(command),
       },
-      mFactor.basePath
     )
   }
 }
